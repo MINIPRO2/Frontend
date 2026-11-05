@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Indicador de foco visible WCAG 2.4.7 y 2.4.11 (ring-2 ring-indigo-400 + alto contraste) */
+  *:focus-visible {
+    outline: 3px solid #6366f1 !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.45) !important;
+  }
+}
+
+/* Enlace Saltar al contenido principal (WCAG 2.4.1 Bypass Blocks) */
+.skip-link {
+  position: absolute;
+  top: -9999px;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.75rem 1.25rem;
+  background-color: #1e293b;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: 2px solid #818cf8;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
