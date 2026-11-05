@@ -1,12 +1,12 @@
 # Frontend (`frontend`)
 
-Interfaz web colaborativa construida con **React 18 + TypeScript + Vite + Tailwind CSS**, cumpliendo con **WCAG 2.2 Nivel AA** (`TS-04`) y arquitectura desacoplada (`TS-00`).
+Interfaz web colaborativa construida con **React 18 + TypeScript + Vite + Tailwind CSS**, cumpliendo con **WCAG 2.2 Nivel AA** y arquitectura desacoplada.
 
-> **Regla de Arquitectura (TS-00):** El frontend **nunca** consulta Firestore directamente. Todos los datos son solicitados mediante peticiones HTTP al servicio `backend-api`.
+> **Regla de Arquitectura:** El frontend **nunca** consulta Firestore directamente. Todos los datos son solicitados mediante peticiones HTTP al servicio `backend-api`.
 
 ---
 
-## Características de Accesibilidad Base (TS-04)
+## Características de Accesibilidad Base
 
 - **Idioma declarado**: `<html lang="es">` en `index.html`.
 - **Regiones Semánticas (Landmarks)**: `<header>`, `<nav aria-label="...">`, `<main id="contenido-principal">`, `<footer>`.
