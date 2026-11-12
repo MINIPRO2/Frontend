@@ -11,6 +11,13 @@ import {
   onAuthStateChanged,
   User,
 } from 'firebase/auth';
+import {
+  getFirestore,
+  Firestore,
+  doc,
+  getDoc,
+  runTransaction,
+} from 'firebase/firestore';
 
 const DEFAULT_API_KEY = ['AIzaSyBdv2GOnCtzn33', 'KhOxW9SafvyO7CoIgwx8'].join('');
 const DEFAULT_APP_ID = '1:201484393164:web:e568613bafcd767ea28069';
@@ -32,22 +39,41 @@ export const isFirebaseClientConfigured = Boolean(
 
 let appInstance: FirebaseApp | null = null;
 let authInstance: Auth | null = null;
+let dbInstance: Firestore | null = null;
 
-export function getFirebaseClientAuth(): Auth | null {
+function ensureFirebaseApp(): FirebaseApp | null {
   if (!isFirebaseClientConfigured) {
     return null;
   }
+  if (!appInstance) {
+    appInstance =
+      getApps().length > 0 ? getApps()[0] : initializeApp(firebaseConfig);
+  }
+  return appInstance;
+}
 
+export function getFirebaseClientAuth(): Auth | null {
   try {
-    if (!appInstance) {
-      appInstance =
-        getApps().length > 0 ? getApps()[0] : initializeApp(firebaseConfig);
-    }
+    const app = ensureFirebaseApp();
+    if (!app) return null;
     if (!authInstance) {
-      authInstance = getAuth(appInstance);
+      authInstance = getAuth(app);
       authInstance.languageCode = 'es';
     }
     return authInstance;
+  } catch {
+    return null;
+  }
+}
+
+export function getFirebaseClientDb(): Firestore | null {
+  try {
+    const app = ensureFirebaseApp();
+    if (!app) return null;
+    if (!dbInstance) {
+      dbInstance = getFirestore(app);
+    }
+    return dbInstance;
   } catch {
     return null;
   }
@@ -64,5 +90,8 @@ export {
   firebaseSignOut,
   sendPasswordResetEmail,
   onAuthStateChanged,
+  doc,
+  getDoc,
+  runTransaction,
 };
 export type { User };
