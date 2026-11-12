@@ -1,17 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  /* Warm, high-contrast light palette */
+  --color-slate-950: #fffdfc;
+  --color-slate-900: #fff8f6;
+  --color-slate-800: #ffefec;
+  --color-slate-700: #f5d8d3;
+  --color-slate-600: #ddb7b1;
+  --color-slate-500: #92716d;
+  --color-slate-400: #70524f;
+  --color-slate-300: #553b38;
+  --color-slate-200: #402b29;
+  --color-slate-100: #2d1d1b;
+
+  --color-indigo-50: #fff0f0;
+  --color-indigo-300: #991b1b;
+  --color-indigo-400: #b91c1c;
+  --color-indigo-500: #dc2626;
+  --color-indigo-950: #7f1d1d;
+
+  --color-violet-500: #f87171;
+  --color-violet-600: #ef4444;
+  --color-cyan-500: #9ddce0;
+  --color-blue-500: #adcaf5;
+  --color-emerald-300: #207657;
+  --color-emerald-500: #91d7b2;
+  --color-teal-500: #a6ded4;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    color-scheme: light;
+    background: #fffdfc;
   }
 
-  /* Indicador de foco visible WCAG 2.4.7 y 2.4.11 (ring-2 ring-indigo-400 + alto contraste) */
-  *:focus-visible {
-    outline: 3px solid #6366f1 !important;
-    outline-offset: 2px !important;
-    box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.45) !important;
+  body {
+    min-width: 320px;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at 16% -8%, rgb(220 38 38 / 0.16), transparent 30rem),
+      radial-gradient(circle at 92% 16%, rgb(255 224 196 / 0.35), transparent 25rem), #fffdfc;
+    font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button,
+  a {
+    cursor: pointer;
+  }
+}
+
+@layer utilities {
+  .button-focus {
+    outline: none;
+  }
+
+  .button-focus:focus-visible {
+    box-shadow:
+      0 0 0 3px #fffdfc,
+      0 0 0 5px #dc504b;
+  }
+
+  .login-focus {
+    outline: none;
+  }
+
+  .login-focus:focus-visible {
+    box-shadow:
+      0 0 0 2px #fffdfc,
+      0 0 0 4px #60a5fa;
+  }
+
+  /* The original dark layout used white for prominent copy. In the light
+     palette this becomes the deepest warm neutral for consistent contrast. */
+  .text-white {
+    color: var(--color-slate-100);
+  }
+
+  .bg-indigo-500.text-white,
+  .bg-emerald-500.text-white,
+  .bg-gradient-to-br.text-white {
+    color: #fff;
   }
 }
 
@@ -22,11 +98,11 @@
   left: 1rem;
   z-index: 9999;
   padding: 0.75rem 1.25rem;
-  background-color: #1e293b;
+  background-color: #2d1d1b;
   color: #ffffff;
   font-weight: 700;
   font-size: 0.95rem;
-  border: 2px solid #818cf8;
+  border: 2px solid #dc2626;
   border-radius: 0.75rem;
   text-decoration: none;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
@@ -35,3 +111,4 @@
 .skip-link:focus {
   top: 1rem;
 }
+
